@@ -13,6 +13,12 @@
         cfp() {
             this.$location.path("/cfp");
         }
+        login() {
+            this.$location.path("/login");
+        }
+        register() {
+            this.$location.path("/register");
+        }
     }
 
     angular.module("shell", ["app.globalsModule"])

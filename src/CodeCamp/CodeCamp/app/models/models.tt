@@ -1,0 +1,6 @@
+﻿<#@ include file="..\..\..\ModelTemplate.t4"#>
+declare module App.Models {
+
+<#= Interface<CodeCamp.Models.RegisterBindingModel>() #>
+<#= Interface<CodeCamp.Models.LoginBindingModel>() #>
+}

@@ -22,12 +22,14 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.cfp()">Call For Speakers</a></li>
+                        <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.login()">Login</a></li>
+                        <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.register()">Register</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="container body-content">
-            <div ng-view id="mainContent">
+            <div class="row" ng-view id="mainContent">
                 @RenderBody()
             </div>
             <hr />

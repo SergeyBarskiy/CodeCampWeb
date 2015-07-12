@@ -13,21 +13,29 @@ var App;
     angular.module("app", [
         "app.globalsModule",
         "ngRoute",
+        "ngMessages",
         "shell",
         "home",
         "cfp",
+        "login",
+        "register",
         "app.directives.Common"
     ]).config(["$routeProvider", "globalsServiceProvider", function ($routeProvider, globalsProvider) {
         var globals = globalsProvider.$get();
         $routeProvider.when("/login", {
             controller: "loginController",
             controllerAs: "vm",
-            templateUrl: AppUtils.createViewUrl("login/logon", globals)
+            templateUrl: AppUtils.createViewUrl("home/login", globals)
+        });
+        $routeProvider.when("/register", {
+            controller: "registerController",
+            controllerAs: "vm",
+            templateUrl: AppUtils.createViewUrl("home/register", globals)
         });
         $routeProvider.when("/forgotpassword", {
             controller: "forgotPasswordController",
             controllerAs: "vm",
-            templateUrl: AppUtils.createViewUrl("Login/ForgotPassword", globals)
+            templateUrl: AppUtils.createViewUrl("home/ForgotPassword", globals)
         });
         $routeProvider.when("/cfp", {
             controller: "cfpController",

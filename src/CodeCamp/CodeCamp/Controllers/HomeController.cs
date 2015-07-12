@@ -19,5 +19,14 @@ namespace CodeCamp.Controllers
         {
             return PartialView("_Index");
         }
+        public ActionResult Login()
+        {
+            return PartialView("_Login");
+        }
+
+        public ActionResult Register()
+        {
+            return PartialView("_Register");
+        }
     }
 }

@@ -13,6 +13,12 @@ var App;
             ShellController.prototype.cfp = function () {
                 this.$location.path("/cfp");
             };
+            ShellController.prototype.login = function () {
+                this.$location.path("/login");
+            };
+            ShellController.prototype.register = function () {
+                this.$location.path("/register");
+            };
             return ShellController;
         })();
         Home.ShellController = ShellController;
