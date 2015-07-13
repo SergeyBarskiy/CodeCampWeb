@@ -5,6 +5,10 @@
         showPleaseWait: boolean;
     }
 
+    export interface IRequestShortcutConfig extends ng.IRequestShortcutConfig {
+        showPleaseWait: boolean;
+    }
+
     export interface IHttpInterceptor {
         request: (config: IRequestConfig) => IRequestConfig;
         requestError: (rejection: any) => ng.IPromise<any>;

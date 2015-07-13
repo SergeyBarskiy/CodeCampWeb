@@ -10,12 +10,14 @@
         constructor(
             private globalsService: App.Config.IGLobals,
             private $location: ng.ILocationService,
-            private authService: App.Auth.AuthService) {
+            private authService: App.Auth.AuthService,
+            private utilities: App.Utilities.IUtilities) {
         }
 
         login() {
             this.authService.login(this.model)
                 .success((data) => {
+                this.utilities.hidePleaseWait();
                 this.$location.path("/");
             });
         }
@@ -26,6 +28,6 @@
     }
 
 
-    angular.module("login", ["app.globalsModule"])
-        .controller("loginController", ["globalsService", "$location", "authService", LoginController]);
+    angular.module("login", ["app.globalsModule", "app.utilities"])
+        .controller("loginController", ["globalsService", "$location", "authService", "utilities", LoginController]);
 }  
