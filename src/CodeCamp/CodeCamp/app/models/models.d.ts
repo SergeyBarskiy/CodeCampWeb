@@ -10,6 +10,7 @@ declare module App.Models {
 	interface ILoginBindingModel {
 		Email: string;
 		Password: string;
+		grant_type: string;
 	}
 
 }

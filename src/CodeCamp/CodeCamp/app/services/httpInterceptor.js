@@ -3,9 +3,10 @@ var App;
     var Interceptors;
     (function (Interceptors) {
         var HttpInterceptor = (function () {
-            function HttpInterceptor($q, utilities) {
+            function HttpInterceptor($q, utilities, globalsService) {
                 this.$q = $q;
                 this.utilities = utilities;
+                this.globalsService = globalsService;
                 var totalRequests = 0;
                 var self = this;
                 this.request = function (config) {
@@ -52,9 +53,7 @@ var App;
             }
             return HttpInterceptor;
         })();
-        angular.module("App.Interceptors", ["app.core.services.utilities", "app.globalsModule"]).config(["$httpProvider", function ($httpProvider) {
-            $httpProvider.interceptors.push("httpInterceptor");
-        }]).service("httpInterceptor", ["$q", "utilities", "globalsService", HttpInterceptor]);
+        Interceptors.HttpInterceptor = HttpInterceptor;
     })(Interceptors = App.Interceptors || (App.Interceptors = {}));
 })(App || (App = {}));
 //# sourceMappingURL=httpInterceptor.js.map

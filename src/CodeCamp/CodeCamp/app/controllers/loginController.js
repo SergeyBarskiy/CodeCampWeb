@@ -3,17 +3,22 @@ var App;
     var Home;
     (function (Home) {
         var LoginController = (function () {
-            function LoginController(globalsService, $location) {
+            function LoginController(globalsService, $location, authService) {
+                this.globalsService = globalsService;
                 this.$location = $location;
+                this.authService = authService;
                 this.model = {
                     Email: "",
-                    Password: ""
+                    Password: "",
+                    grant_type: "password"
                 };
                 this.emailPattern = /^[\w -\.] +@([\w -]+\.)+[\w -]{2, 4 } $/;
-                console.log(globalsService.baseUrl + "shell");
             }
             LoginController.prototype.login = function () {
-                alert("login");
+                var _this = this;
+                this.authService.login(this.model).success(function (data) {
+                    _this.$location.path("/");
+                });
             };
             LoginController.prototype.register = function () {
                 this.$location.path("/register");
@@ -21,7 +26,7 @@ var App;
             return LoginController;
         })();
         Home.LoginController = LoginController;
-        angular.module("login", ["app.globalsModule"]).controller("loginController", ["globalsService", "$location", LoginController]);
+        angular.module("login", ["app.globalsModule"]).controller("loginController", ["globalsService", "$location", "authService", LoginController]);
     })(Home = App.Home || (App.Home = {}));
 })(App || (App = {}));
 //# sourceMappingURL=loginController.js.map

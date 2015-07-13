@@ -19,7 +19,8 @@ var App;
         "cfp",
         "login",
         "register",
-        "app.directives.Common"
+        "app.directives.Common",
+        "app.utilities"
     ]).config(["$routeProvider", "globalsServiceProvider", function ($routeProvider, globalsProvider) {
         var globals = globalsProvider.$get();
         $routeProvider.when("/login", {

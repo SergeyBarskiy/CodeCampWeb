@@ -69,7 +69,10 @@ var App;
             }
             return Utilities;
         })();
-        angular.module("app.utilities", ["app.globalsModule"]).service("utilities", ["$window", "globalsService", Utilities]);
+        angular.module("app.utilities", ["app.globalsModule"]).service("utilities", ["$window", "globalsService", Utilities]).service("httpInterceptor", ["$q", "utilities", "globalsService", App.Interceptors.HttpInterceptor]).config(["$httpProvider", function ($httpProvider) {
+            $httpProvider.interceptors.push("httpInterceptor");
+            console.log("httpInterceptor configured");
+        }]);
     })(Utilities = App.Utilities || (App.Utilities = {}));
 })(App || (App = {}));
 //# sourceMappingURL=utilities.js.map

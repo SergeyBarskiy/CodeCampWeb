@@ -131,5 +131,10 @@ module App.Utilities {
     }
 
     angular.module("app.utilities", ["app.globalsModule"])
-        .service("utilities", ["$window", "globalsService", Utilities]);
+        .service("utilities", ["$window", "globalsService", Utilities])
+        .service("httpInterceptor", ["$q", "utilities", "globalsService", App.Interceptors.HttpInterceptor])
+        .config(["$httpProvider", function ($httpProvider: ng.IHttpProvider) {
+        $httpProvider.interceptors.push("httpInterceptor");
+        console.log("httpInterceptor configured");
+    }]);
 } 

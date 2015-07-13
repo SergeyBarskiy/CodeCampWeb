@@ -10,6 +10,14 @@ var App;
             AuthService.prototype.register = function (model) {
                 return this.$http.post(this.globalsService.webApiBaseUrl + "account/register", model);
             };
+            AuthService.prototype.login = function (model) {
+                return this.$http({
+                    method: 'POST',
+                    url: this.globalsService.baseUrl + "Token",
+                    data: "userName=" + model.Email + "&password=" + model.Password + "&grant_type=password",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+            };
             return AuthService;
         })();
         Auth.AuthService = AuthService;

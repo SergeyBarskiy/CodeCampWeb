@@ -61,6 +61,9 @@ namespace CodeCamp.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Required]
+        public string grant_type { get; set; }
+
     }
 
     public class RegisterExternalBindingModel

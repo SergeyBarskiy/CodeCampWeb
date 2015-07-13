@@ -16,7 +16,8 @@ module App {
         "cfp",
         "login",
         "register",
-        "app.directives.Common"
+        "app.directives.Common",
+        "app.utilities"
     ]).config(["$routeProvider", "globalsServiceProvider",
         ($routeProvider: ng.route.IRouteProvider, globalsProvider: App.Config.IGlobalsProvider) => {
             var globals = globalsProvider.$get();

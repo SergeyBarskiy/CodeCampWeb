@@ -16,13 +16,16 @@
         config: any;
     }
 
-    class HttpInterceptor implements IHttpInterceptor {
+    export class HttpInterceptor implements IHttpInterceptor {
         request: (config: IRequestConfig) => IRequestConfig;
         requestError: (rejection: any) => ng.IPromise<any>;
         response: (response: ng.IPromise<any>) => ng.IPromise<any>;
         responseError: (rejection: any) => ng.IPromise<any>;
 
-        constructor(private $q: ng.IQService, private utilities: App.Utilities.IUtilities) {
+        constructor(
+            private $q: ng.IQService,
+            private utilities: App.Utilities.IUtilities,
+            private globalsService: App.Config.IGLobals) {
             var totalRequests: number = 0;
             var self = this;
             this.request = function (config: IRequestConfig) {
@@ -68,11 +71,4 @@
             };
         }
     }
-
-    angular.module("App.Interceptors", ["app.core.services.utilities", "app.globalsModule"])
-        .config(["$httpProvider", function ($httpProvider: ng.IHttpProvider) {
-        $httpProvider.interceptors.push("httpInterceptor");
-    }])
-        .service("httpInterceptor", ["$q", "utilities", "globalsService", HttpInterceptor]
-        );
 } 
