@@ -9,9 +9,16 @@
         }
         emailPattern = /^[\w -\.] +@([\w -]+\.)+[\w -]{2, 4 } $/;
         constructor(
-            globalsService: App.Config.IGLobals,
-            private $location: ng.ILocationService) {
-            console.log(globalsService.baseUrl + "shell");
+            private globalsService: App.Config.IGLobals,
+            private $location: ng.ILocationService,
+            private authService: App.Auth.AuthService,
+            private utilities: App.Utilities.IUtilities,
+            private $timeout: ng.ITimeoutService) {
+        }
+
+        proceedToLogin: () => void = () => {
+            this.$timeout(() => { this.$location.path("/login"); }, 100);
+
         }
 
         register() {
@@ -19,10 +26,28 @@
                 alert("Passwords need to match");
             }
             else {
+                this.authService.register(this.model)
+                    .success((data) => {
+                    var buttons: App.Utilities.IButtonForMessage[] = [];
+                    buttons.push({ label: "OK", method: this.proceedToLogin });
+                    this.utilities.showMessage("Registration succesful.  Please login now.", buttons);
+                })
+                    .error((data) => {
+                    if (data.ModelState) {
+                        var messsage = "";
+                        var prop: any;
+                        for (prop in data.ModelState) {
+                            if (data.ModelState.hasOwnProperty(prop)) {
+                                messsage = messsage + data.ModelState[prop][0];
+                            }
+                        }
+                        this.utilities.showMessage(messsage);
+                    }
+                });
             }
         }
     }
 
-    angular.module("register", ["app.globalsModule"])
-        .controller("registerController", ["globalsService", "$location", RegisterController]);
+    angular.module("register", ["app.globalsModule", "auth", "app.utilities"])
+        .controller("registerController", ["globalsService", "$location", "authService", "utilities", "$timeout", RegisterController]);
 }  

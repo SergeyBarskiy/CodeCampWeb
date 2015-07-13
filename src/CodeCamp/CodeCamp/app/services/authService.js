@@ -7,6 +7,9 @@ var App;
                 this.$http = $http;
                 this.globalsService = globalsService;
             }
+            AuthService.prototype.register = function (model) {
+                return this.$http.post(this.globalsService.webApiBaseUrl + "account/register", model);
+            };
             return AuthService;
         })();
         Auth.AuthService = AuthService;

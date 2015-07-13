@@ -26,6 +26,7 @@ namespace CodeCamp
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/app/app.js",
+                        "~/app/services/*.js",
                         "~/app/controllers/*.js",
                         "~/app/directives/*.js"));
         }
