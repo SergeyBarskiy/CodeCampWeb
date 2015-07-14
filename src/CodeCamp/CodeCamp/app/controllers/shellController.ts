@@ -2,7 +2,7 @@
 
     export class ShellController {
         constructor(
-            globalsService: App.Config.IGLobals,
+            private globalsService: App.Config.IGLobals,
             private $location: ng.ILocationService) {
             console.log(globalsService.baseUrl + "shell");
         }
@@ -18,6 +18,9 @@
         }
         register() {
             this.$location.path("/register");
+        }
+        user() {
+            return this.globalsService.loggedInUser;
         }
     }
 

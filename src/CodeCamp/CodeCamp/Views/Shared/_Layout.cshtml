@@ -22,8 +22,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.cfp()">Call For Speakers</a></li>
-                        <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.login()">Login</a></li>
-                        <li><a class="navbar-brand" href="#" no-click ng-click="shellVm.register()">Register</a></li>
+                        <li ng-hide="shellVm.user()"><a class="navbar-brand" href="#" no-click ng-click="shellVm.login()">Login</a></li>
+                        <li ng-hide="shellVm.user()"><a class="navbar-brand" href="#" no-click ng-click="shellVm.register()">Register</a></li>
+                        <li ng-show="shellVm.user()"><a class="navbar-brand" href="#" no-click>Welcome, {{shellVm.user()}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,6 +58,7 @@
             globals.webApiBaseUrl = '@(Url.Content(@"~/api/"))';
             globals.applicationName = 'Atlanta Code Camp';
             globals.isDebug = @(isDebug.ToString().ToLower());
+            globals.loggedInUser = '';
             return globals;
         });
     </script>

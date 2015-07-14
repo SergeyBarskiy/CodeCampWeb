@@ -4,6 +4,7 @@ var App;
     (function (Home) {
         var ShellController = (function () {
             function ShellController(globalsService, $location) {
+                this.globalsService = globalsService;
                 this.$location = $location;
                 console.log(globalsService.baseUrl + "shell");
             }
@@ -18,6 +19,9 @@ var App;
             };
             ShellController.prototype.register = function () {
                 this.$location.path("/register");
+            };
+            ShellController.prototype.user = function () {
+                return this.globalsService.loggedInUser;
             };
             return ShellController;
         })();

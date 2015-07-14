@@ -10,7 +10,7 @@
             var config: App.Interceptors.IRequestShortcutConfig = { showPleaseWait: true };
             return this.$http.post(this.globalsService.webApiBaseUrl + "account/register", model, config);
         }
-        login(model: App.Models.ILoginBindingModel): ng.IHttpPromise<any> {
+        login(model: App.Models.ILoginBindingModel): ng.IHttpPromise<App.Config.ILoginResult> {
             this.utilities.showPleaseWait();
             var promise = this.$http({
                 method: 'POST',

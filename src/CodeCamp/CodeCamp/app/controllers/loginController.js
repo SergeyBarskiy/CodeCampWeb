@@ -18,8 +18,10 @@ var App;
             LoginController.prototype.login = function () {
                 var _this = this;
                 this.authService.login(this.model).success(function (data) {
-                    _this.utilities.hidePleaseWait();
+                    _this.globalsService.loggedInUser = data.userName;
                     _this.$location.path("/");
+                }).finally(function () {
+                    _this.utilities.hidePleaseWait();
                 });
             };
             LoginController.prototype.register = function () {

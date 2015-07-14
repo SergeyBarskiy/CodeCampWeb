@@ -17,9 +17,10 @@
         login() {
             this.authService.login(this.model)
                 .success((data) => {
-                this.utilities.hidePleaseWait();
+                this.globalsService.loggedInUser = data.userName;
                 this.$location.path("/");
-            });
+            })
+                .finally(() => { this.utilities.hidePleaseWait(); });
         }
         register() {
             this.$location.path("/register");
